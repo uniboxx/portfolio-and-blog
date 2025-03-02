@@ -1,0 +1,121 @@
+---
+import { ClientRouter } from 'astro:transitions';
+const siteTitle = 'Unibox';
+const pageTitle = Astro.url.pathname.split('/').join(' | ');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg" href="/images/unibox.svg" />
+
+    <meta name="generator" content={Astro.generator} />
+    <title>{siteTitle} {pageTitle}</title>
+    <ClientRouter />
+    <link rel="stylesheet" href="/global.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Unibox WebDev</a></h1>
+      <p class="tagline">Personal Portfolio and Blog</p>
+      <nav>
+        <a
+          href="/"
+          aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Home</a
+        >
+        <a
+          href="/blog"
+          aria-current={Astro.url.pathname === '/blog' ? 'page' : undefined}
+          >Blog</a
+        >
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p class="copyright">Copyright &copy; {new Date().getFullYear()}</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: 'Lato', sans-serif;
+  }
+  header {
+    height: 20rem;
+    background:
+      radial-gradient(
+        circle at center,
+        #fff 0,
+        #ffffffaa 7rem,
+        transparent 15rem
+      ),
+      url('/images/html-css-ts.png') no-repeat center/cover;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      letter-spacing: 0.6rem;
+      max-width: max-content;
+      margin: 0 auto;
+      background: linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--primary),
+        var(--quaternary),
+        var(--therthiary)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      a {
+        text-decoration: none;
+      }
+    }
+    .tagline {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: 1.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  nav {
+    margin-top: 2rem;
+    a {
+      text-decoration: none;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 10px;
+      border: 1px solid gray;
+      margin: 0.5rem;
+      &[aria-current='page'] {
+        background: #333;
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+  main {
+    padding: 1rem 4px;
+  }
+
+  footer {
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    .copyright {
+      text-align: center;
+      color: #666;
+      font-size: 0.8rem;
+      padding: 1rem 4px;
+    }
+  }
+</style>

@@ -2,6 +2,10 @@
   "name": "restaurant",
   "type": "module",
   "version": "0.0.1",
+  "author": {
+    "name": "unibox",
+    "email": "unibox@duck.com"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

@@ -1,0 +1,11 @@
+---
+import RestaurantLayout from '@layouts/RestaurantLayout.astro';
+import SitesLayout from '@layouts/SitesLayout.astro';
+const pageTitle = 'Restaurant';
+---
+
+<SitesLayout>
+  <RestaurantLayout {pageTitle}>
+    <h1>{pageTitle}</h1>
+  </RestaurantLayout>
+</SitesLayout>

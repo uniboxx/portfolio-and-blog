@@ -1,0 +1,97 @@
+---
+import { ClientRouter } from 'astro:transitions';
+const siteTitle = 'Unibox Sites';
+const { pageTitle } = Astro.props;
+console.log(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>"
+    />
+    <link rel="stylesheet" href="/global.css" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{siteTitle} | {pageTitle}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <header>
+      <h1>Culinary Cove</h1>
+      <p>Your sanctuary for exceptional flavors</p>
+      <nav>
+        <a
+          href="/sites/restaurant"
+          aria-current={Astro.url.pathname === '/sites/restaurant'
+            ? 'page'
+            : undefined}>Our mission</a
+        >
+        <a
+          href="/sites/restaurant/ingredients"
+          aria-current={Astro.url.pathname === '/sites/restaurant/ingredients'
+            ? 'page'
+            : undefined}>Ingredients</a
+        >
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p class="tagline">&copy; {new Date().getFullYear()} Culinary Cove</p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: 'Lato', sans-serif;
+  }
+  header {
+    height: 20rem;
+    background:
+      radial-gradient(
+        circle at center,
+        #fff 0,
+        #ffffffaa 5rem,
+        transparent 15rem
+      ),
+      url('/images/hero.jpg') no-repeat center/cover;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  nav {
+    margin-top: 2rem;
+    a {
+      text-decoration: none;
+      color: #333;
+      padding: 5px 10px;
+      border-radius: 0.5rem;
+      border: 1px solid gray;
+      margin: 0.5rem;
+      &[aria-current='page'] {
+        background-color: var(--primary);
+        color: var(--secondary);
+      }
+    }
+  }
+  footer {
+    padding: 1rem 4px;
+    .tagline {
+      text-align: center;
+    }
+  }
+
+  @media screen and (min-width: 40rem) {
+    html {
+      font-size: 125%;
+    }
+  }
+</style>
